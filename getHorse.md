@@ -1,6 +1,6 @@
 # Adicionar Horse a um projeto Delphi/Lazarus
 
-Criar pasta [.modules], nesta pasta executar [git clone] para as dependências e adicionar o caminho no classpath do projeto.
+Criar pasta `.modules`, nesta pasta executar `git clone` para as dependências e adicionar o caminho no classpath do projeto.
 
 ## Core do Horse
 git clone https://github.com/HashLoad/horse.git
