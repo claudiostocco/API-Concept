@@ -1,6 +1,6 @@
 # Adicionar Horse a um projeto Delphi/Lazarus
 
-Criar pasta [.mudules], nesta pasta executar [git clone] para as dependências e adicionar o caminho no classpath do projeto.
+Criar pasta [.modules], nesta pasta executar [git clone] para as dependências e adicionar o caminho no classpath do projeto.
 
 ## Core do Horse
 git clone https://github.com/HashLoad/horse.git
@@ -37,47 +37,47 @@ git clone https://github.com/HashLoad/horse-logger-provider-logfile.git
 
 ## Paths a adicionar
 
-- .mudules/horse/src
-- .mudules/jhonson/src
-- .mudules/horse-cors/src
-- .mudules/handle-exception/src
-- .mudules/horse-logger-provider-logfile/src
-- .mudules/horse-logger/src
+- .modules/horse/src
+- .modules/jhonson/src
+- .modules/horse-cors/src
+- .modules/handle-exception/src
+- .modules/horse-logger-provider-logfile/src
+- .modules/horse-logger/src
 
 ### Para o JWT Delphi
 
-- .mudules/horse-jwt/src
-- .mudules/delphi-jose-jwt/Source/Common
-- .mudules/delphi-jose-jwt/Source/JOSE
+- .modules/horse-jwt/src
+- .modules/delphi-jose-jwt/Source/Common
+- .modules/delphi-jose-jwt/Source/JOSE
 
 ### Para o JWT Lazarus
 
-- .mudules/horse-jwt/src
-- .mudules/HashLib/src/Base
-- .mudules/HashLib/src/Checksum
-- .mudules/HashLib/src/Crypto
-- .mudules/HashLib/src/Hash128
-- .mudules/HashLib/src/Hash32
-- .mudules/HashLib/src/Hash64
-- .mudules/HashLib/src/Include
-- .mudules/HashLib/src/Interfaces
-- .mudules/HashLib/src/KDF
-- .mudules/HashLib/src/NullDigest
-- .mudules/HashLib/src/Nullable
-- .mudules/HashLib/src/Packages
-- .mudules/HashLib/src/Utils
+- .modules/horse-jwt/src
+- .modules/HashLib/src/Base
+- .modules/HashLib/src/Checksum
+- .modules/HashLib/src/Crypto
+- .modules/HashLib/src/Hash128
+- .modules/HashLib/src/Hash32
+- .modules/HashLib/src/Hash64
+- .modules/HashLib/src/Include
+- .modules/HashLib/src/Interfaces
+- .modules/HashLib/src/KDF
+- .modules/HashLib/src/NullDigest
+- .modules/HashLib/src/Nullable
+- .modules/HashLib/src/Packages
+- .modules/HashLib/src/Utils
 
 ## Para copiar
 ```
-.mudules/horse/src;.mudules/jhonson/src;.mudules/horse-cors/src;.mudules/handle-exception/src;.mudules/horse-logger-provider-logfile/src;.mudules/horse-logger/src
+.modules/horse/src;.modules/jhonson/src;.modules/horse-cors/src;.modules/handle-exception/src;.modules/horse-logger-provider-logfile/src;.modules/horse-logger/src
 ```
 
 ### Para o JWT Delphi
 ```
-.mudules/horse-jwt/src;.mudules/delphi-jose-jwt/Source/Common;.mudules/delphi-jose-jwt/Source/JOSE
+.modules/horse-jwt/src;.modules/delphi-jose-jwt/Source/Common;.modules/delphi-jose-jwt/Source/JOSE
 ```
 
 ### Para o JWT Lazarus
 ```
-.mudules/horse-jwt/src;.mudules/HashLib/src/Base;.mudules/HashLib/src/Checksum;.mudules/HashLib/src/Crypto;.mudules/HashLib/src/Hash128;.mudules/HashLib/src/Hash32;.mudules/HashLib/src/Hash64;.mudules/HashLib/src/Include;.mudules/HashLib/src/Interfaces;.mudules/HashLib/src/KDF;.mudules/HashLib/src/NullDigest;.mudules/HashLib/src/Nullable;.mudules/HashLib/src/Packages;.mudules/HashLib/src/Utils
+.modules/horse-jwt/src;.modules/HashLib/src/Base;.modules/HashLib/src/Checksum;.modules/HashLib/src/Crypto;.modules/HashLib/src/Hash128;.modules/HashLib/src/Hash32;.modules/HashLib/src/Hash64;.modules/HashLib/src/Include;.modules/HashLib/src/Interfaces;.modules/HashLib/src/KDF;.modules/HashLib/src/NullDigest;.modules/HashLib/src/Nullable;.modules/HashLib/src/Packages;.modules/HashLib/src/Utils
 ```
