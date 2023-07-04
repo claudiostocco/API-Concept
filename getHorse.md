@@ -68,14 +68,16 @@ git clone https://github.com/HashLoad/horse-logger-provider-logfile.git
 - .mudules/HashLib/src/Utils
 
 ## Para copiar
-´´´
+```
 .mudules/horse/src;.mudules/jhonson/src;.mudules/horse-cors/src;.mudules/handle-exception/src;.mudules/horse-logger-provider-logfile/src;.mudules/horse-logger/src
-´´´
+```
 
 ### Para o JWT Delphi
-
+```
 .mudules/horse-jwt/src;.mudules/delphi-jose-jwt/Source/Common;.mudules/delphi-jose-jwt/Source/JOSE
+```
 
 ### Para o JWT Lazarus
-
+```
 .mudules/horse-jwt/src;.mudules/HashLib/src/Base;.mudules/HashLib/src/Checksum;.mudules/HashLib/src/Crypto;.mudules/HashLib/src/Hash128;.mudules/HashLib/src/Hash32;.mudules/HashLib/src/Hash64;.mudules/HashLib/src/Include;.mudules/HashLib/src/Interfaces;.mudules/HashLib/src/KDF;.mudules/HashLib/src/NullDigest;.mudules/HashLib/src/Nullable;.mudules/HashLib/src/Packages;.mudules/HashLib/src/Utils
+```
