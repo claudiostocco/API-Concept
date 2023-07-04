@@ -51,6 +51,7 @@ git clone https://github.com/HashLoad/horse-logger-provider-logfile.git
 - .modules/delphi-jose-jwt/Source/JOSE
 
 ### Para o JWT Lazarus
+Copiar a pasta `HashLib` de dentro da pasta `HashLib4Pascal` para a raiz da pasta `.modules`.
 
 - .modules/horse-jwt/src
 - .modules/HashLib/src/Base
