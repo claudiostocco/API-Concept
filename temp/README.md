@@ -1,1 +1,1 @@
-teste
+# Projeto temporário para definir estrutura do conector com banco de dados
