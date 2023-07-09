@@ -1,0 +1,257 @@
+object fmCadCli: TfmCadCli
+  Left = 257
+  Height = 271
+  Top = 250
+  Width = 598
+  Caption = 'Cadastro de Clientes'
+  ClientHeight = 271
+  ClientWidth = 598
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 248
+    Width = 598
+    Panels = <>
+  end
+  object ToolBar1: TToolBar
+    Left = 0
+    Height = 37
+    Top = 211
+    Width = 598
+    Align = alBottom
+    Caption = 'ToolBar1'
+    TabOrder = 1
+    object sbNovo: TSpeedButton
+      Left = 1
+      Height = 35
+      Top = 1
+      Width = 95
+      Align = alLeft
+      BorderSpacing.Left = 6
+      BorderSpacing.Right = 6
+      Caption = 'Novo'
+      Flat = True
+    end
+    object sbGravar: TSpeedButton
+      Left = 109
+      Height = 35
+      Top = 1
+      Width = 95
+      Align = alLeft
+      BorderSpacing.Left = 6
+      BorderSpacing.Right = 6
+      Caption = 'Gravar'
+      Flat = True
+    end
+    object sbCancelar: TSpeedButton
+      Left = 216
+      Height = 35
+      Top = 1
+      Width = 95
+      Align = alLeft
+      BorderSpacing.Left = 6
+      BorderSpacing.Right = 6
+      Caption = 'Cancelar'
+      Flat = True
+    end
+    object sbExcluir: TSpeedButton
+      Left = 320
+      Height = 35
+      Top = 1
+      Width = 95
+      Align = alLeft
+      BorderSpacing.Left = 6
+      BorderSpacing.Right = 6
+      Caption = 'Excluir'
+      Flat = True
+    end
+    object sbVoltar: TSpeedButton
+      Left = 499
+      Height = 35
+      Top = 0
+      Width = 95
+      Align = alRight
+      BorderSpacing.Left = 6
+      BorderSpacing.Right = 6
+      Caption = 'Voltar'
+      Flat = True
+      OnClick = sbVoltarClick
+    end
+  end
+  object DBNavigator1: TDBNavigator
+    Left = 0
+    Height = 25
+    Top = 186
+    Width = 598
+    Align = alBottom
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsScaleChilds
+    ChildSizing.EnlargeVertical = crsScaleChilds
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 100
+    ClientHeight = 25
+    ClientWidth = 598
+    DataSource = dsCad
+    Options = []
+    TabOrder = 2
+  end
+  object DBEdit1: TDBEdit
+    Left = 15
+    Height = 23
+    Top = 38
+    Width = 130
+    DataSource = dsCad
+    MaxLength = 0
+    TabOrder = 3
+  end
+  object DBEdit2: TDBEdit
+    Left = 154
+    Height = 23
+    Top = 38
+    Width = 358
+    DataSource = dsCad
+    MaxLength = 0
+    TabOrder = 4
+  end
+  object DBEdit3: TDBEdit
+    Left = 15
+    Height = 23
+    Top = 85
+    Width = 409
+    DataSource = dsCad
+    MaxLength = 0
+    TabOrder = 5
+  end
+  object DBEdit4: TDBEdit
+    Left = 432
+    Height = 23
+    Top = 85
+    Width = 80
+    DataSource = dsCad
+    MaxLength = 0
+    TabOrder = 6
+  end
+  object Label1: TLabel
+    Left = 15
+    Height = 15
+    Top = 22
+    Width = 48
+    Caption = 'Cpf/Cnpj'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 154
+    Height = 15
+    Top = 22
+    Width = 34
+    Caption = 'Nome'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 15
+    Height = 15
+    Top = 68
+    Width = 52
+    Caption = 'Endereço'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 432
+    Height = 15
+    Top = 68
+    Width = 46
+    Caption = 'Número'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label5: TLabel
+    Left = 15
+    Height = 15
+    Top = 116
+    Width = 20
+    Caption = 'CEP'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label6: TLabel
+    Left = 104
+    Height = 15
+    Top = 116
+    Width = 37
+    Caption = 'Cidade'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label7: TLabel
+    Left = 383
+    Height = 15
+    Top = 116
+    Width = 15
+    Caption = 'UF'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label8: TLabel
+    Left = 416
+    Height = 15
+    Top = 116
+    Width = 66
+    Caption = 'Nascimento'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object DBEdit5: TDBEdit
+    Left = 15
+    Height = 23
+    Top = 132
+    Width = 80
+    DataSource = dsCad
+    MaxLength = 0
+    TabOrder = 7
+  end
+  object DBEdit6: TDBEdit
+    Left = 104
+    Height = 23
+    Top = 132
+    Width = 270
+    DataSource = dsCad
+    MaxLength = 0
+    TabOrder = 8
+  end
+  object DBEdit7: TDBEdit
+    Left = 383
+    Height = 23
+    Top = 132
+    Width = 24
+    DataSource = dsCad
+    MaxLength = 0
+    TabOrder = 9
+  end
+  object DBEdit8: TDBEdit
+    Left = 416
+    Height = 23
+    Top = 132
+    Width = 96
+    DataSource = dsCad
+    MaxLength = 0
+    TabOrder = 10
+  end
+  object dsCad: TDataSource
+    AutoEdit = False
+    Left = 558
+    Top = 59
+  end
+end
