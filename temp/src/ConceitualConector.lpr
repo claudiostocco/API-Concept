@@ -11,7 +11,7 @@ uses
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms,
-  main, CadCli;
+  main, CadCli, service.CadCli, adapter.query.intf;
 
 {$R *.res}
 
