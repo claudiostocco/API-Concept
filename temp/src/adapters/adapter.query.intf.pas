@@ -9,8 +9,14 @@ uses
 
 type
   IQuery = Interface
-    public
-      function Select(SQL: String): TDataSet;
+    function AsDataSet: TDataSet;
+    //function GetField<T>(FieldName: String): T;
+    function Insert(SQL: String; UpSert: Boolean = False): IQuery;
+    function Open: IQuery;
+    function Select(SQL: String): IQuery;
+    function SetParamByName(Param: String; Value: Variant): IQuery;
+    function Update(SQL: String): IQuery;
+    property RowsAffected: Integer;
   end;
 
 implementation
