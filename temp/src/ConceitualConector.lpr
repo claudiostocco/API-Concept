@@ -10,9 +10,9 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms,
+  Forms, zcomponent,
   main, CadCli, service.CadCli, adapter.query.intf, adapter.query.impl, 
-connector.zeos;
+connector.zeos, connection;
 
 {$R *.res}
 
@@ -22,5 +22,6 @@ begin
   Application.Initialize;
   Application.CreateForm(TfmMain, fmMain);
   Application.CreateForm(TfmCadCli, fmCadCli);
+  Application.CreateForm(TdmConn, dmConn);
   Application.Run;
 end.

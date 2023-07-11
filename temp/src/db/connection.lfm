@@ -1,0 +1,15 @@
+object dmConn: TdmConn
+  OnCreate = DataModuleCreate
+  OldCreateOrder = False
+  Height = 241
+  HorizontalOffset = 301
+  VerticalOffset = 250
+  Width = 271
+  object ZConnection: TZConnection
+    ControlsCodePage = cCP_UTF8
+    AutoEncodeStrings = True
+    Port = 0
+    Left = 56
+    Top = 24
+  end
+end
