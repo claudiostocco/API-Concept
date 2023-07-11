@@ -18,6 +18,7 @@ type
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
+				procedure MenuItem4Click(Sender: TObject);
     procedure MenuItem5Click(Sender: TObject);
   private
 
@@ -39,6 +40,12 @@ uses CadCli;
 procedure TfmMain.MenuItem5Click(Sender: TObject);
 begin
    fmCadCli.ShowModal;
+end;
+
+procedure TfmMain.MenuItem4Click(Sender: TObject);
+begin
+   ShowMessage('Application to demontrate the connection concept using clean architeture.'+#13+
+               'Enabling easy switching of connection component and database technology.');
 end;
 
 end.

@@ -8,7 +8,16 @@ object dmConn: TdmConn
   object ZConnection: TZConnection
     ControlsCodePage = cCP_UTF8
     AutoEncodeStrings = True
+    Properties.Strings = (
+      'AutoEncodeStrings=ON'
+      'controls_cp=CP_UTF8'
+    )
     Port = 0
+    Database = '127.0.0.1:cadcli'
+    User = 'sysdba'
+    Password = 'pfglessa'
+    Protocol = 'firebird'
+    LibraryLocation = 'fbclient.dll'
     Left = 56
     Top = 24
   end

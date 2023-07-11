@@ -5,20 +5,31 @@ unit service.CadCli;
 interface
 
 uses
-  Classes, SysUtils, DB;
+	  (* System Units *)
+	  Classes, SysUtils, DB,
+	  (* Project units *)
+	  adapter.query.intf;
 
 type
 
   { TCadCliService }
 
   TCadCliService = class
+    private
+      FQueryCad: IQuery;
     public
+      constructor Create;
       function GetCadCliDataSet: TDataSet;
   end;
 
 implementation
 
 { TCadCliService }
+
+constructor TCadCliService.Create;
+begin
+
+end;
 
 function TCadCliService.GetCadCliDataSet: TDataSet;
 begin

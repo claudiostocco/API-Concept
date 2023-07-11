@@ -11,61 +11,50 @@ uses
     adapter.query.intf;
 
 type
+		{ TAbstractQuery }
 
-  //IInternalQuery = Interface
-  //  property RowsAffected;
-  //  property Connection;
-  //  property Transaction;
-  //  property Params;
-  //  property SQL;
-  //end;
-
-		{ TQuery }
-
-  TQuery = class(TInterfacedObject, IQuery)
-  strict private
+  TAbstractQuery = class(TInterfacedObject, IQuery)
+  protected
     FInternalDataSet: TDataSet;
+				FRowsAffected: Integer;
 		public
 				function AsDataSet: TDataSet;
+				function Exec(SQL: String): IQuery; overload; virtual; abstract;
+				function Exec: IQuery; overload; virtual; abstract;
 				function Insert(SQL: String; UpSert: Boolean=False): IQuery;
 				function Open: IQuery;
-				function Select(SQL: String): IQuery;
-				function SetParamByName(Param: String; Value: Variant): IQuery;
+				function Open(SQL: String): IQuery; overload; virtual; abstract;
+				function Select(SQL: String): IQuery virtual; abstract;
+				function SetParamByName(Param: String; Value: Variant): IQuery; virtual; abstract;
 				function Update(SQL: String): IQuery;
+  published
+    property RowsAffected: Integer read FRowsAffected;
   end;
 
 implementation
 
-{ TQuery }
+{ TAbstractQuery }
 
-function TQuery.AsDataSet: TDataSet;
+function TAbstractQuery.AsDataSet: TDataSet;
 begin
    Result := FInternalDataSet;
 end;
 
-function TQuery.Insert(SQL: String; UpSert: Boolean): IQuery;
+function TAbstractQuery.Insert(SQL: String; UpSert: Boolean): IQuery;
 begin
+   if UpSert then SQL := 'UPDATE OR '+SQL;
+   Result := Select(SQL);
+end;
+
+function TAbstractQuery.Open: IQuery;
+begin
+   FInternalDataSet.Open;
    Result := Self;
 end;
 
-function TQuery.Open: IQuery;
+function TAbstractQuery.Update(SQL: String): IQuery;
 begin
-   Result := Self;
-end;
-
-function TQuery.Select(SQL: String): IQuery;
-begin
-   Result := Self;
-end;
-
-function TQuery.SetParamByName(Param: String; Value: Variant): IQuery;
-begin
-   Result := Self;
-end;
-
-function TQuery.Update(SQL: String): IQuery;
-begin
-   Result := Self;
+   Result := Select(SQL);
 end;
 
 end.
