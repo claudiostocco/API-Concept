@@ -79,5 +79,4 @@ lib/
 build/
 
 # Database directory
-db/
 data/
