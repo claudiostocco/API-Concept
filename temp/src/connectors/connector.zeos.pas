@@ -16,16 +16,16 @@ implementation
 
 type
 
-		{ TZeosQuery }
+  { TZeosQuery }
   TZeosQuery = class(TAbstractQuery, IQuery)
   private
     constructor Create(AOwner: TComponent);
-		public
+  public
     function Exec: IQuery; overload;
     function Exec(SQL: String): IQuery; overload;
     function Open(SQL: String): IQuery; overload;
-				function Select(SQL: String): IQuery;
-				function SetParamByName(Param: String; Value: Variant): IQuery;
+    function Select(SQL: String): IQuery;
+    function SetParamByName(Param: String; Value: Variant): IQuery;
   end;
 
 constructor TZeosQuery.Create(AOwner: TComponent);
@@ -48,8 +48,8 @@ end;
 
 function TZeosQuery.Open(SQL: String): IQuery;
 begin
-   (FInternalDataSet as TZQuery).Prepare;
-   Result := Self;
+   Result := Select(SQL);
+   Self.Open;
 end;
 
 function TZeosQuery.Select(SQL: String): IQuery;

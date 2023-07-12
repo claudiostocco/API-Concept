@@ -35,21 +35,20 @@ var sPath: String;
 begin
    sPath := ExtractFilePath(ParamStr(0));
    try
-	     try
-	        Ini := TIniFile.Create(sPath+'application.ini');
-	        ZConnection.Protocol := Ini.ReadString('database','driver','');
-	        ZConnection.Database := Ini.ReadString('database','dbfile','');
-	        ZConnection.User := Ini.ReadString('database','user','');
-	        ZConnection.Password := Ini.ReadString('database','password','');
+      try
+         Ini := TIniFile.Create(sPath+'application.ini');
+         ZConnection.Protocol := Ini.ReadString('database','driver','');
+         ZConnection.Database := Ini.ReadString('database','dbfile','');
+         ZConnection.User := Ini.ReadString('database','user','');
+         ZConnection.Password := Ini.ReadString('database','password','');
          ZConnection.LibraryLocation := Ini.ReadString('database','libraryClient','');
-	        ZConnection.Connected := True;
-	     finally
-	        FreeAndNil(Ini);
-				  end;
-			except on e: Exception do
+         ZConnection.Connected := True;
+      finally
+         FreeAndNil(Ini);
+      end;
+   except on e: Exception do
       ShowMessage(e.Message);
    end;
 end;
 
 end.
-

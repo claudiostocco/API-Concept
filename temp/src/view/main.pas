@@ -18,7 +18,7 @@ type
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
-				procedure MenuItem4Click(Sender: TObject);
+    procedure MenuItem4Click(Sender: TObject);
     procedure MenuItem5Click(Sender: TObject);
   private
 

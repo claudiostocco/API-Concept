@@ -11,22 +11,22 @@ uses
     adapter.query.intf;
 
 type
-		{ TAbstractQuery }
 
+  { TAbstractQuery }
   TAbstractQuery = class(TInterfacedObject, IQuery)
   protected
     FInternalDataSet: TDataSet;
-				FRowsAffected: Integer;
-		public
-				function AsDataSet: TDataSet;
-				function Exec(SQL: String): IQuery; overload; virtual; abstract;
-				function Exec: IQuery; overload; virtual; abstract;
-				function Insert(SQL: String; UpSert: Boolean=False): IQuery;
-				function Open: IQuery;
-				function Open(SQL: String): IQuery; overload; virtual; abstract;
-				function Select(SQL: String): IQuery virtual; abstract;
-				function SetParamByName(Param: String; Value: Variant): IQuery; virtual; abstract;
-				function Update(SQL: String): IQuery;
+    FRowsAffected: Integer;
+  public
+    function AsDataSet: TDataSet;
+    function Exec(SQL: String): IQuery; overload; virtual; abstract;
+    function Exec: IQuery; overload; virtual; abstract;
+    function Insert(SQL: String; UpSert: Boolean=False): IQuery;
+    function Open: IQuery;
+    function Open(SQL: String): IQuery; overload; virtual; abstract;
+    function Select(SQL: String): IQuery virtual; abstract;
+    function SetParamByName(Param: String; Value: Variant): IQuery; virtual; abstract;
+    function Update(SQL: String): IQuery;
   published
     property RowsAffected: Integer read FRowsAffected;
   end;
@@ -58,4 +58,3 @@ begin
 end;
 
 end.
-

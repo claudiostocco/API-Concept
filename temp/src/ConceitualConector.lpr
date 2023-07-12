@@ -10,9 +10,15 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, zcomponent,
-  main, CadCli, service.CadCli, adapter.query.intf, adapter.query.impl, 
-connector.zeos, connection;
+  Forms,
+  zcomponent,
+  main,
+  CadCli,
+  service.CadCli,
+  adapter.query.intf,
+  adapter.query.impl,
+  connector.zeos,
+  connection;
 
 {$R *.res}
 
