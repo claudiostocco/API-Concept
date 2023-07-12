@@ -77,3 +77,4 @@ lib/
 
 # Build directory
 build/
+db/
