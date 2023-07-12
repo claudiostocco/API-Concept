@@ -80,3 +80,4 @@ build/
 
 # Database directory
 db/
+data/
