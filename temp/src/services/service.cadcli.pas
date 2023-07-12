@@ -8,7 +8,7 @@ uses
 	  (* System Units *)
 	  Classes, SysUtils, DB,
 	  (* Project units *)
-	  adapter.query.intf;
+	  adapter.query.intf, adapter.query.impl, connection, connector.zeos;
 
 type
 
@@ -18,7 +18,7 @@ type
     private
       FQueryCad: IQuery;
     public
-      constructor Create;
+      constructor Create(AOwner: TComponent);
       function GetCadCliDataSet: TDataSet;
   end;
 
@@ -26,14 +26,16 @@ implementation
 
 { TCadCliService }
 
-constructor TCadCliService.Create;
+constructor TCadCliService.Create(AOwner: TComponent);
 begin
-
+   FQueryCad := TQueryFactory.New<TZeosQuery>(AOwner, dmConn.ZConnection);
+                .Select('SELECT ID, NOME, ENDERECO, NUMERO, CEP, IDMUNICIPIO, NASCIMENTO FROM CLIENTE')
+			             .Open;
 end;
 
 function TCadCliService.GetCadCliDataSet: TDataSet;
 begin
-   Result := nil;
+   Result := FQueryCad.AsDataSet;
 end;
 
 end.

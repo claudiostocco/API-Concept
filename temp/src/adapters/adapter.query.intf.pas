@@ -17,6 +17,7 @@ type
     function Open: IQuery; overload;
     function Open(SQL: String): IQuery; overload;
     function Select(SQL: String): IQuery;
+    procedure SetConnection(Connection: TComponent);
     function SetParamByName(Param: String; Value: Variant): IQuery;
     function Update(SQL: String): IQuery;
     property RowsAffected: Integer;

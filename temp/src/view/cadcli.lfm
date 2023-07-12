@@ -6,6 +6,7 @@ object fmCadCli: TfmCadCli
   Caption = 'Cadastro de Clientes'
   ClientHeight = 271
   ClientWidth = 598
+  OnCreate = FormCreate
   object StatusBar1: TStatusBar
     Left = 0
     Height = 23
@@ -102,6 +103,7 @@ object fmCadCli: TfmCadCli
     Height = 23
     Top = 38
     Width = 130
+    DataField = 'ID'
     DataSource = dsCad
     MaxLength = 0
     TabOrder = 3
@@ -111,6 +113,7 @@ object fmCadCli: TfmCadCli
     Height = 23
     Top = 38
     Width = 358
+    DataField = 'NOME'
     DataSource = dsCad
     MaxLength = 0
     TabOrder = 4
@@ -120,6 +123,7 @@ object fmCadCli: TfmCadCli
     Height = 23
     Top = 85
     Width = 409
+    DataField = 'ENDERECO'
     DataSource = dsCad
     MaxLength = 0
     TabOrder = 5
@@ -129,6 +133,7 @@ object fmCadCli: TfmCadCli
     Height = 23
     Top = 85
     Width = 80
+    DataField = 'NUMERO'
     DataSource = dsCad
     MaxLength = 0
     TabOrder = 6
@@ -218,6 +223,7 @@ object fmCadCli: TfmCadCli
     Height = 23
     Top = 132
     Width = 80
+    DataField = 'CEP'
     DataSource = dsCad
     MaxLength = 0
     TabOrder = 7
@@ -227,6 +233,7 @@ object fmCadCli: TfmCadCli
     Height = 23
     Top = 132
     Width = 270
+    DataField = 'IDMUNICIPIO'
     DataSource = dsCad
     MaxLength = 0
     TabOrder = 8
@@ -245,6 +252,7 @@ object fmCadCli: TfmCadCli
     Height = 23
     Top = 132
     Width = 96
+    DataField = 'NASCIMENTO'
     DataSource = dsCad
     MaxLength = 0
     TabOrder = 10

@@ -12,6 +12,13 @@ uses
 
 type
 
+		{ TQueryFactory }
+
+  TQueryFactory = class
+  public
+     class function New<T>(AOwner: TComponent; Connection: TComponent): IQuery;
+		end;
+
   { TAbstractQuery }
   TAbstractQuery = class(TInterfacedObject, IQuery)
   protected
@@ -25,6 +32,7 @@ type
     function Open: IQuery;
     function Open(SQL: String): IQuery; overload; virtual; abstract;
     function Select(SQL: String): IQuery virtual; abstract;
+    procedure SetConnection(Connection: TComponent); virtual; abstract;
     function SetParamByName(Param: String; Value: Variant): IQuery; virtual; abstract;
     function Update(SQL: String): IQuery;
   published
@@ -32,6 +40,14 @@ type
   end;
 
 implementation
+
+{ TQueryFactory }
+
+class function TQueryFactory.New<T>(AOwner: TComponent; Connection: TComponent): IQuery;
+begin
+   Result := T.Create(AOwner);
+   Result.SetConnection(Connection);
+end;
 
 { TAbstractQuery }
 

@@ -26,8 +26,8 @@ begin
   RequireDerivedFormResource:=True;
   Application.Scaled:=True;
   Application.Initialize;
+  Application.CreateForm(TdmConn, dmConn);
   Application.CreateForm(TfmMain, fmMain);
   Application.CreateForm(TfmCadCli, fmCadCli);
-  Application.CreateForm(TdmConn, dmConn);
   Application.Run;
 end.

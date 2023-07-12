@@ -8,25 +8,25 @@ uses
    (* System Units *)
    Classes, SysUtils, DB,
    (* Zeos Units *)
-   ZDataSet, zcomponent,
+   ZAbstractConnection, ZDataSet, zcomponent,
    (* Project units *)
    adapter.query.intf, adapter.query.impl;
-
-implementation
 
 type
 
   { TZeosQuery }
   TZeosQuery = class(TAbstractQuery, IQuery)
-  private
-    constructor Create(AOwner: TComponent);
   public
-    function Exec: IQuery; overload;
-    function Exec(SQL: String): IQuery; overload;
-    function Open(SQL: String): IQuery; overload;
-    function Select(SQL: String): IQuery;
-    function SetParamByName(Param: String; Value: Variant): IQuery;
+    constructor Create(AOwner: TComponent);
+    function Exec: IQuery; overload; override;
+    function Exec(SQL: String): IQuery; overload; override;
+    function Open(SQL: String): IQuery; overload; override;
+    function Select(SQL: String): IQuery; override;
+    procedure SetConnection(Connection: TComponent); override;
+    function SetParamByName(Param: String; Value: Variant): IQuery; override;
   end;
+
+implementation
 
 constructor TZeosQuery.Create(AOwner: TComponent);
 begin
@@ -57,6 +57,11 @@ begin
    (FInternalDataSet as TZQuery).SQL.Text := SQL;
    (FInternalDataSet as TZQuery).Prepare;
    Result := Self;
+end;
+
+procedure TZeosQuery.SetConnection(Connection: TComponent);
+begin
+   (FInternalDataSet as TZQuery).Connection := (Connection as TZAbstractConnection);
 end;
 
 function TZeosQuery.SetParamByName(Param: String; Value: Variant): IQuery;

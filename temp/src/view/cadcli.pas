@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, DB, Forms, Controls, Graphics, Dialogs, ComCtrls, Buttons,
-  DBCtrls, StdCtrls;
+  DBCtrls, StdCtrls, service.CadCli;
 
 type
 
@@ -38,9 +38,10 @@ type
     sbVoltar: TSpeedButton;
     StatusBar1: TStatusBar;
     ToolBar1: TToolBar;
+				procedure FormCreate(Sender: TObject);
     procedure sbVoltarClick(Sender: TObject);
   private
-
+    FCadCliService: TCadCliService;
   public
 
   end;
@@ -57,6 +58,12 @@ implementation
 procedure TfmCadCli.sbVoltarClick(Sender: TObject);
 begin
    Close;
+end;
+
+procedure TfmCadCli.FormCreate(Sender: TObject);
+begin
+   FCadCliService := TCadCliService.Create(Self);
+   dsCad.DataSet := FCadCliService.GetCadCliDataSet;
 end;
 
 end.
