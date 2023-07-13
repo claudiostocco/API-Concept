@@ -5,10 +5,10 @@ unit service.CadCli;
 interface
 
 uses
-	  (* System Units *)
-	  Classes, SysUtils, DB,
-	  (* Project units *)
-	  adapter.query.intf, adapter.query.impl, connection, connector.zeos;
+  (* System Units *)
+  Classes, SysUtils, DB,
+  (* Project units *)
+  adapter.query.intf, adapter.query.impl, connection, connector.zeos;
 
 type
 
@@ -28,9 +28,9 @@ implementation
 
 constructor TCadCliService.Create(AOwner: TComponent);
 begin
-   FQueryCad := TQueryFactory.New<TZeosQuery>(AOwner, dmConn.ZConnection);
+   FQueryCad := TQueryFactory.New<TZeosQuery>(AOwner, dmConn.ZConnection)
                 .Select('SELECT ID, NOME, ENDERECO, NUMERO, CEP, IDMUNICIPIO, NASCIMENTO FROM CLIENTE')
-			             .Open;
+		.Open;
 end;
 
 function TCadCliService.GetCadCliDataSet: TDataSet;

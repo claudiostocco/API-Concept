@@ -12,12 +12,11 @@ uses
 
 type
 
-		{ TQueryFactory }
-
+  { TQueryFactory }
   TQueryFactory = class
   public
      class function New<T>(AOwner: TComponent; Connection: TComponent): IQuery;
-		end;
+  end;
 
   { TAbstractQuery }
   TAbstractQuery = class(TInterfacedObject, IQuery)
