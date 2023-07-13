@@ -6,13 +6,14 @@ interface
 
 uses
   Classes, SysUtils, DB, Forms, Controls, Graphics, Dialogs, ComCtrls, Buttons,
-  DBCtrls, StdCtrls, service.CadCli;
+  DBCtrls, StdCtrls, ExtCtrls, service.CadCli;
 
 type
 
   { TfmCadCli }
 
   TfmCadCli = class(TForm)
+				dbnControls: TDBNavigator;
     dsCad: TDataSource;
     DBEdit1: TDBEdit;
     DBEdit2: TDBEdit;
@@ -22,7 +23,6 @@ type
     DBEdit6: TDBEdit;
     DBEdit7: TDBEdit;
     DBEdit8: TDBEdit;
-    DBNavigator1: TDBNavigator;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
@@ -31,13 +31,9 @@ type
     Label6: TLabel;
     Label7: TLabel;
     Label8: TLabel;
-    sbNovo: TSpeedButton;
-    sbGravar: TSpeedButton;
-    sbCancelar: TSpeedButton;
-    sbExcluir: TSpeedButton;
-    sbVoltar: TSpeedButton;
+				pnControls: TPanel;
+				sbVoltar: TSpeedButton;
     StatusBar1: TStatusBar;
-    ToolBar1: TToolBar;
 				procedure FormCreate(Sender: TObject);
     procedure sbVoltarClick(Sender: TObject);
   private

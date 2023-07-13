@@ -18,7 +18,7 @@ uses
   adapter.query.intf,
   adapter.query.impl,
   connector.zeos,
-  connection;
+  connection, connector.factory;
 
 {$R *.res}
 

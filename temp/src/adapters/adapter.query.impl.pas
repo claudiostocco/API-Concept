@@ -12,12 +12,6 @@ uses
 
 type
 
-  { TQueryFactory }
-  TQueryFactory = class
-  public
-     class function New<T>(AOwner: TComponent; Connection: TComponent): IQuery;
-  end;
-
   { TAbstractQuery }
   TAbstractQuery = class(TInterfacedObject, IQuery)
   protected
@@ -25,11 +19,11 @@ type
     FRowsAffected: Integer;
   public
     function AsDataSet: TDataSet;
-    function Exec(SQL: String): IQuery; overload; virtual; abstract;
+    function Exec(SQL: String): IQuery; overload; virtual;
     function Exec: IQuery; overload; virtual; abstract;
     function Insert(SQL: String; UpSert: Boolean=False): IQuery;
-    function Open: IQuery;
-    function Open(SQL: String): IQuery; overload; virtual; abstract;
+    function Open: IQuery; overload;
+    function Open(SQL: String): IQuery; overload;
     function Select(SQL: String): IQuery virtual; abstract;
     procedure SetConnection(Connection: TComponent); virtual; abstract;
     function SetParamByName(Param: String; Value: Variant): IQuery; virtual; abstract;
@@ -40,19 +34,16 @@ type
 
 implementation
 
-{ TQueryFactory }
-
-class function TQueryFactory.New<T>(AOwner: TComponent; Connection: TComponent): IQuery;
-begin
-   Result := T.Create(AOwner);
-   Result.SetConnection(Connection);
-end;
-
 { TAbstractQuery }
 
 function TAbstractQuery.AsDataSet: TDataSet;
 begin
    Result := FInternalDataSet;
+end;
+
+function TAbstractQuery.Exec(SQL: String): IQuery;
+begin
+   Result := Update(SQL).Exec;
 end;
 
 function TAbstractQuery.Insert(SQL: String; UpSert: Boolean): IQuery;
@@ -65,6 +56,11 @@ function TAbstractQuery.Open: IQuery;
 begin
    FInternalDataSet.Open;
    Result := Self;
+end;
+
+function TAbstractQuery.Open(SQL: String): IQuery;
+begin
+   Result := Select(SQL).Open;
 end;
 
 function TAbstractQuery.Update(SQL: String): IQuery;

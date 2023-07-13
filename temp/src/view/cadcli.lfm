@@ -1,102 +1,18 @@
 object fmCadCli: TfmCadCli
   Left = 257
-  Height = 271
+  Height = 254
   Top = 250
-  Width = 598
+  Width = 568
   Caption = 'Cadastro de Clientes'
-  ClientHeight = 271
-  ClientWidth = 598
+  ClientHeight = 254
+  ClientWidth = 568
   OnCreate = FormCreate
   object StatusBar1: TStatusBar
     Left = 0
     Height = 23
-    Top = 248
-    Width = 598
+    Top = 231
+    Width = 568
     Panels = <>
-  end
-  object ToolBar1: TToolBar
-    Left = 0
-    Height = 37
-    Top = 211
-    Width = 598
-    Align = alBottom
-    Caption = 'ToolBar1'
-    TabOrder = 1
-    object sbNovo: TSpeedButton
-      Left = 1
-      Height = 35
-      Top = 1
-      Width = 95
-      Align = alLeft
-      BorderSpacing.Left = 6
-      BorderSpacing.Right = 6
-      Caption = 'Novo'
-      Flat = True
-    end
-    object sbGravar: TSpeedButton
-      Left = 109
-      Height = 35
-      Top = 1
-      Width = 95
-      Align = alLeft
-      BorderSpacing.Left = 6
-      BorderSpacing.Right = 6
-      Caption = 'Gravar'
-      Flat = True
-    end
-    object sbCancelar: TSpeedButton
-      Left = 216
-      Height = 35
-      Top = 1
-      Width = 95
-      Align = alLeft
-      BorderSpacing.Left = 6
-      BorderSpacing.Right = 6
-      Caption = 'Cancelar'
-      Flat = True
-    end
-    object sbExcluir: TSpeedButton
-      Left = 320
-      Height = 35
-      Top = 1
-      Width = 95
-      Align = alLeft
-      BorderSpacing.Left = 6
-      BorderSpacing.Right = 6
-      Caption = 'Excluir'
-      Flat = True
-    end
-    object sbVoltar: TSpeedButton
-      Left = 499
-      Height = 35
-      Top = 0
-      Width = 95
-      Align = alRight
-      BorderSpacing.Left = 6
-      BorderSpacing.Right = 6
-      Caption = 'Voltar'
-      Flat = True
-      OnClick = sbVoltarClick
-    end
-  end
-  object DBNavigator1: TDBNavigator
-    Left = 0
-    Height = 25
-    Top = 186
-    Width = 598
-    Align = alBottom
-    BevelOuter = bvNone
-    ChildSizing.EnlargeHorizontal = crsScaleChilds
-    ChildSizing.EnlargeVertical = crsScaleChilds
-    ChildSizing.ShrinkHorizontal = crsScaleChilds
-    ChildSizing.ShrinkVertical = crsScaleChilds
-    ChildSizing.Layout = cclLeftToRightThenTopToBottom
-    ChildSizing.ControlsPerLine = 100
-    ClientHeight = 25
-    ClientWidth = 598
-    DataSource = dsCad
-    Options = []
-    TabOrder = 2
   end
   object DBEdit1: TDBEdit
     Left = 15
@@ -106,7 +22,7 @@ object fmCadCli: TfmCadCli
     DataField = 'ID'
     DataSource = dsCad
     MaxLength = 0
-    TabOrder = 3
+    TabOrder = 1
   end
   object DBEdit2: TDBEdit
     Left = 154
@@ -116,7 +32,7 @@ object fmCadCli: TfmCadCli
     DataField = 'NOME'
     DataSource = dsCad
     MaxLength = 0
-    TabOrder = 4
+    TabOrder = 2
   end
   object DBEdit3: TDBEdit
     Left = 15
@@ -126,7 +42,7 @@ object fmCadCli: TfmCadCli
     DataField = 'ENDERECO'
     DataSource = dsCad
     MaxLength = 0
-    TabOrder = 5
+    TabOrder = 3
   end
   object DBEdit4: TDBEdit
     Left = 432
@@ -136,7 +52,7 @@ object fmCadCli: TfmCadCli
     DataField = 'NUMERO'
     DataSource = dsCad
     MaxLength = 0
-    TabOrder = 6
+    TabOrder = 4
   end
   object Label1: TLabel
     Left = 15
@@ -226,7 +142,7 @@ object fmCadCli: TfmCadCli
     DataField = 'CEP'
     DataSource = dsCad
     MaxLength = 0
-    TabOrder = 7
+    TabOrder = 5
   end
   object DBEdit6: TDBEdit
     Left = 104
@@ -236,7 +152,7 @@ object fmCadCli: TfmCadCli
     DataField = 'IDMUNICIPIO'
     DataSource = dsCad
     MaxLength = 0
-    TabOrder = 8
+    TabOrder = 6
   end
   object DBEdit7: TDBEdit
     Left = 383
@@ -245,7 +161,7 @@ object fmCadCli: TfmCadCli
     Width = 24
     DataSource = dsCad
     MaxLength = 0
-    TabOrder = 9
+    TabOrder = 7
   end
   object DBEdit8: TDBEdit
     Left = 416
@@ -255,11 +171,54 @@ object fmCadCli: TfmCadCli
     DataField = 'NASCIMENTO'
     DataSource = dsCad
     MaxLength = 0
-    TabOrder = 10
+    TabOrder = 8
+  end
+  object pnControls: TPanel
+    Left = 0
+    Height = 40
+    Top = 191
+    Width = 568
+    Align = alBottom
+    ClientHeight = 40
+    ClientWidth = 568
+    TabOrder = 9
+    object sbVoltar: TSpeedButton
+      Left = 472
+      Height = 38
+      Top = 1
+      Width = 93
+      Align = alRight
+      BorderSpacing.Left = 6
+      BorderSpacing.Right = 2
+      Caption = 'Voltar'
+      Flat = True
+      OnClick = sbVoltarClick
+    end
+    object dbnControls: TDBNavigator
+      Left = 3
+      Height = 38
+      Top = 1
+      Width = 439
+      Align = alClient
+      BevelOuter = bvNone
+      BorderSpacing.Left = 2
+      BorderSpacing.Right = 30
+      ChildSizing.EnlargeHorizontal = crsScaleChilds
+      ChildSizing.EnlargeVertical = crsScaleChilds
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.ShrinkVertical = crsScaleChilds
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 100
+      ClientHeight = 38
+      ClientWidth = 439
+      DataSource = dsCad
+      Options = []
+      TabOrder = 0
+    end
   end
   object dsCad: TDataSource
     AutoEdit = False
-    Left = 558
-    Top = 59
+    Left = 528
+    Top = 40
   end
 end

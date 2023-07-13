@@ -15,12 +15,11 @@ uses
 type
 
   { TZeosQuery }
-  TZeosQuery = class(TAbstractQuery, IQuery)
+  TZeosQuery = class(TAbstractQuery)
   public
     constructor Create(AOwner: TComponent);
     function Exec: IQuery; overload; override;
     function Exec(SQL: String): IQuery; overload; override;
-    function Open(SQL: String): IQuery; overload; override;
     function Select(SQL: String): IQuery; override;
     procedure SetConnection(Connection: TComponent); override;
     function SetParamByName(Param: String; Value: Variant): IQuery; override;
@@ -44,12 +43,6 @@ function TZeosQuery.Exec(SQL: String): IQuery;
 begin
    (FInternalDataSet as TZQuery).Connection.ExecuteDirect(SQL,FRowsAffected);
    Result := Self;
-end;
-
-function TZeosQuery.Open(SQL: String): IQuery;
-begin
-   Result := Select(SQL);
-   Self.Open;
 end;
 
 function TZeosQuery.Select(SQL: String): IQuery;
