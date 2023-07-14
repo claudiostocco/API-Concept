@@ -12,29 +12,62 @@ uses
 
 type
 
+  { TConnectionFactory }
+
+  TConnectionFactory = class
+  private
+     class var FInstance: TConnectionFactory;
+     FConnection: TComponent;
+  public
+     constructor Create(Connection: TComponent);
+     class function Get: TComponent;
+     class function New: TComponent;
+  end;
+
   { TQueryFactory }
-	 TQueryFactory = class
-	 private
-	    class function New<T>(AOwner: TComponent; Connection: TComponent): IQuery;
-	 public
-	    class function New(AOwner: TComponent; Connection: TComponent): IQuery;
-	 end;
+  TQueryFactory = class
+  private
+     class function New<T>(AOwner: TComponent): IQuery;
+  public
+     class function New(AOwner: TComponent; Connection: TComponent): IQuery;
+  end;
 
 
 implementation
 
+{ TConnectionFactory }
+
+constructor TConnectionFactory.Create(Connection: TComponent);
+begin
+   FConnection := Connection;
+   FInstance := Self;
+end;
+
+class function TConnectionFactory.Get: TComponent;
+begin
+   if not Assigned(FInstance) then
+      raise ENoConstructException.Create('Not exists instance of the TConnectionFactory class!');
+   Result := FInstance.FConnection;
+end;
+
+class function TConnectionFactory.New: TComponent;
+begin
+   if not Assigned(FInstance) then
+      raise ENoConstructException.Create('Not exists instance of the TConnectionFactory class!');
+   Result := FInstance.FConnection;
+end;
+
 { TQueryFactory }
 
-class function TQueryFactory.New<T>(AOwner: TComponent; Connection: TComponent): IQuery;
+class function TQueryFactory.New<T>(AOwner: TComponent): IQuery;
 begin
    Result := T.Create(AOwner);
 end;
 
 class function TQueryFactory.New(AOwner: TComponent; Connection: TComponent): IQuery;
 begin
-   Result := TQueryFactory.New<TZeosQuery>(AOwner, Connection);
+   Result := TQueryFactory.New<TZeosQuery>(AOwner);
    Result.SetConnection(Connection);
 end;
 
 end.
-
