@@ -18,8 +18,9 @@ type
   private
      class var FInstance: TConnectionFactory;
      FConnection: TComponent;
+     FAOwner: TComponent;
   public
-     constructor Create(Connection: TComponent);
+     constructor Create(AOwner: TComponent; Connection: TComponent);
      class function Get: TComponent;
      class function New: TComponent;
   end;
@@ -37,10 +38,11 @@ implementation
 
 { TConnectionFactory }
 
-constructor TConnectionFactory.Create(Connection: TComponent);
+constructor TConnectionFactory.Create(AOwner: TComponent; Connection: TComponent);
 begin
    FConnection := Connection;
    FInstance := Self;
+   FAOwner := AOwner;
 end;
 
 class function TConnectionFactory.Get: TComponent;
@@ -54,7 +56,7 @@ class function TConnectionFactory.New: TComponent;
 begin
    if not Assigned(FInstance) then
       raise ENoConstructException.Create('Not exists instance of the TConnectionFactory class!');
-   Result := FInstance.FConnection;
+   Result := TZeosConnection.NewConnection(FAOwner,FInstance.FConnection);
 end;
 
 { TQueryFactory }

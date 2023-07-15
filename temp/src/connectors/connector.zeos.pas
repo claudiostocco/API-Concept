@@ -8,11 +8,17 @@ uses
    (* System Units *)
    Classes, SysUtils, DB,
    (* Zeos Units *)
-   ZAbstractConnection, ZDataSet, zcomponent,
+   ZAbstractConnection, ZDataSet, zcomponent, ZConnection,
    (* Project units *)
    adapter.query.intf, adapter.query.impl;
 
 type
+
+  { TZeosConnection }
+
+  TZeosConnection = class
+    class function NewConnection(AOwner: TComponent; Connection: TComponent): TComponent;
+  end;
 
   { TZeosQuery }
   TZeosQuery = class(TAbstractQuery)
@@ -26,6 +32,22 @@ type
   end;
 
 implementation
+
+{ TZeosConnection }
+
+class function TZeosConnection.NewConnection(AOwner: TComponent; Connection: TComponent): TComponent;
+begin
+   Result := TZConnection.Create(AOwner);
+   with (Result as TZConnection) do
+   begin
+      Protocol := (Connection as TZConnection).Protocol;
+      Database := (Connection as TZConnection).Database;
+      User := (Connection as TZConnection).User;
+      Password := (Connection as TZConnection).Password;
+      LibraryLocation := (Connection as TZConnection).LibraryLocation;
+      Connected := True;
+   end;
+end;
 
 constructor TZeosQuery.Create(AOwner: TComponent);
 begin
