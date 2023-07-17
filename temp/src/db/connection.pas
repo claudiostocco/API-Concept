@@ -25,6 +25,8 @@ var
 
 implementation
 
+uses connector.factory;
+
 {$R *.lfm}
 
 { TdmConn }
@@ -46,6 +48,9 @@ begin
       finally
          FreeAndNil(Ini);
       end;
+
+      (* Instancia a connection factory, passando o connection da tecnologia utilizada *)
+      TConnectionFactory.Create(Self, ZConnection);
    except on e: Exception do
       ShowMessage(e.Message);
    end;

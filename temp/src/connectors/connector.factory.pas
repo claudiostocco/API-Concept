@@ -30,7 +30,8 @@ type
   private
      class function New<T>(AOwner: TComponent): IQuery;
   public
-     class function New(AOwner: TComponent; Connection: TComponent): IQuery;
+     class function New(AOwner: TComponent; Connection: TComponent): IQuery; overload;
+     class function New(AOwner: TComponent): IQuery; overload;
   end;
 
 
@@ -70,6 +71,12 @@ class function TQueryFactory.New(AOwner: TComponent; Connection: TComponent): IQ
 begin
    Result := TQueryFactory.New<TZeosQuery>(AOwner);
    Result.SetConnection(Connection);
+end;
+
+class function TQueryFactory.New(AOwner: TComponent): IQuery;
+begin
+   Result := TQueryFactory.New<TZeosQuery>(AOwner);
+   Result.SetConnection(TConnectionFactory.Get);
 end;
 
 end.

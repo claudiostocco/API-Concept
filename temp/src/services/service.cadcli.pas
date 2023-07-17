@@ -8,7 +8,7 @@ uses
   (* System Units *)
   Classes, SysUtils, DB,
   (* Project units *)
-  adapter.query.intf, connector.factory, connection;
+  adapter.query.intf, connector.factory;
 
 type
 
@@ -28,7 +28,7 @@ implementation
 
 constructor TCadCliService.Create(AOwner: TComponent);
 begin
-   FQueryCad := TQueryFactory.New(AOwner, dmConn.ZConnection)
+   FQueryCad := TQueryFactory.New(AOwner)
                 .Select('SELECT ID, NOME, ENDERECO, NUMERO, CEP, IDMUNICIPIO, NASCIMENTO FROM CLIENTE')
 		.Open;
 end;
