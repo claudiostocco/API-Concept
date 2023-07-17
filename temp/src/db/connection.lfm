@@ -12,13 +12,90 @@ object dmConn: TdmConn
       'AutoEncodeStrings=ON'
       'controls_cp=CP_UTF8'
     )
+    Connected = True
     Port = 0
     Database = '127.0.0.1:cadcli'
     User = 'sysdba'
     Password = 'pfglessa'
     Protocol = 'firebird'
-    LibraryLocation = 'fbclient.dll'
+    LibraryLocation = '/lib64/libfbclient.so'
     Left = 56
     Top = 24
+  end
+  object ZQuery1: TZQuery
+    Connection = ZConnection
+    SQL.Strings = (
+      'SELECT ID, NOME, ENDERECO, NUMERO, CEP, IDMUNICIPIO, NASCIMENTO FROM CLIENTE'
+    )
+    Params = <>
+    Left = 128
+    Top = 132
+    object ZQuery1ID: TStringField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 14
+    end
+    object ZQuery1NOME: TStringField
+      FieldKind = fkData
+      FieldName = 'NOME'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 100
+    end
+    object ZQuery1ENDERECO: TStringField
+      FieldKind = fkData
+      FieldName = 'ENDERECO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 100
+    end
+    object ZQuery1NUMERO: TLongintField
+      FieldKind = fkData
+      FieldName = 'NUMERO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+    end
+    object ZQuery1CEP: TStringField
+      FieldKind = fkData
+      FieldName = 'CEP'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 8
+    end
+    object ZQuery1IDMUNICIPIO: TLongintField
+      FieldKind = fkData
+      FieldName = 'IDMUNICIPIO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+    end
+    object ZQuery1NASCIMENTO: TDateField
+      FieldKind = fkData
+      FieldName = 'NASCIMENTO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+    end
   end
 end

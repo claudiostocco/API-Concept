@@ -5,7 +5,7 @@ unit connection;
 interface
 
 uses
-  Classes, SysUtils, ZConnection, dialogs, IniFiles;
+  Classes, SysUtils, ZConnection, ZDataset, dialogs, IniFiles, DB;
 
 type
 
@@ -13,6 +13,14 @@ type
 
   TdmConn = class(TDataModule)
     ZConnection: TZConnection;
+    ZQuery1: TZQuery;
+    ZQuery1CEP: TStringField;
+    ZQuery1ENDERECO: TStringField;
+    ZQuery1ID: TStringField;
+    ZQuery1IDMUNICIPIO: TLongintField;
+    ZQuery1NASCIMENTO: TDateField;
+    ZQuery1NOME: TStringField;
+    ZQuery1NUMERO: TLongintField;
     procedure DataModuleCreate(Sender: TObject);
   private
 
