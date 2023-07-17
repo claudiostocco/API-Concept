@@ -13,7 +13,7 @@ type
   { TfmCadCli }
 
   TfmCadCli = class(TForm)
-				dbnControls: TDBNavigator;
+    dbnControls: TDBNavigator;
     dsCad: TDataSource;
     DBEdit1: TDBEdit;
     DBEdit2: TDBEdit;
@@ -31,10 +31,10 @@ type
     Label6: TLabel;
     Label7: TLabel;
     Label8: TLabel;
-				pnControls: TPanel;
-				sbVoltar: TSpeedButton;
+    pnControls: TPanel;
+    sbVoltar: TSpeedButton;
     StatusBar1: TStatusBar;
-				procedure FormCreate(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure sbVoltarClick(Sender: TObject);
   private
     FCadCliService: TCadCliService;
