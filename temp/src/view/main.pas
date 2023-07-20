@@ -1,6 +1,8 @@
 unit main;
 
-{$mode objfpc}{$H+}
+{$ifdef FPC}
+   {$mode Delphi}
+{$endif}
 
 interface
 
@@ -31,7 +33,11 @@ var
 
 implementation
 
-{$R *.lfm}
+{$ifdef FPC}
+  {$R *.lfm}
+{$else}
+  {$R *.dfm}
+{$endif}
 
 uses CadCli;
 

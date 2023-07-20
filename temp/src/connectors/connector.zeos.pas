@@ -62,8 +62,10 @@ begin
 end;
 
 function TZeosQuery.Exec(SQL: String): IQuery;
+var iRowsAffected: Integer;
 begin
-   (FInternalDataSet as TZQuery).Connection.ExecuteDirect(SQL,FRowsAffected);
+   (FInternalDataSet as TZQuery).Connection.ExecuteDirect(SQL,iRowsAffected);
+   FRowsAffected := iRowsAffected;
    Result := Self;
 end;
 

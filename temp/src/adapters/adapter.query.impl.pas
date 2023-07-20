@@ -1,6 +1,8 @@
-unit adapter.query.impl;
+﻿unit adapter.query.impl;
 
-{$mode Delphi}
+{$ifdef FPC}
+   {$mode Delphi}
+{$endif}
 
 interface
 
@@ -16,7 +18,9 @@ type
   TAbstractQuery = class(TInterfacedObject, IQuery)
   protected
     FInternalDataSet: TDataSet;
-    FRowsAffected: Integer;
+    FRowsAffected: Int64;
+  private
+    function GetRowsAffected: Int64;
   public
     function AsDataSet: TDataSet;
     function Exec(SQL: String): IQuery; overload; virtual;
@@ -24,13 +28,13 @@ type
     function Insert(SQL: String; UpSert: Boolean=False): IQuery;
     function Open: IQuery; overload;
     function Open(SQL: String): IQuery; overload;
-    function Select(SQL: String): IQuery virtual; abstract;
+    function Select(SQL: String): IQuery; virtual; abstract;
     procedure SetConnection(Connection: TComponent); virtual; abstract;
     function SetFieldMask(Field: String; Mask: String; TypeMask: TTypeFieldMaskSet): IQuery;
     function SetParamByName(Param: String; Value: Variant): IQuery; virtual; abstract;
     function Update(SQL: String): IQuery;
   published
-    property RowsAffected: Integer read FRowsAffected;
+    property RowsAffected: Int64 read GetRowsAffected;
   end;
 
 implementation
@@ -81,6 +85,11 @@ end;
 function TAbstractQuery.Update(SQL: String): IQuery;
 begin
    Result := Select(SQL);
+end;
+
+function TAbstractQuery.GetRowsAffected: Int64;
+begin
+   Result := FRowsAffected;
 end;
 
 end.

@@ -24,7 +24,7 @@ uses
 
 begin
   RequireDerivedFormResource:=True;
-  Application.Scaled:=True;
+				Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TdmConn, dmConn);
   Application.CreateForm(TfmMain, fmMain);

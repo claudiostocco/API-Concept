@@ -1,6 +1,8 @@
 unit service.CadCli;
 
-{$mode Delphi}
+{$ifdef FPC}
+   {$mode Delphi}
+{$endif}
 
 interface
 

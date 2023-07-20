@@ -1,12 +1,18 @@
 unit CadCli;
 
-{$mode Delphi}
+{$ifdef FPC}
+   {$mode Delphi}
+{$endif}
 
 interface
 
 uses
   Classes, SysUtils, DB, Forms, Controls, Graphics, Dialogs, ComCtrls, Buttons,
-  DBCtrls, StdCtrls, ExtCtrls, service.CadCli;
+  DBCtrls, StdCtrls, ExtCtrls, service.CadCli
+  {$ifndef FPC}
+    , Vcl.Mask
+  {$endif}
+  ;
 
 type
 
@@ -47,7 +53,11 @@ var
 
 implementation
 
-{$R *.lfm}
+{$ifdef FPC}
+  {$R *.lfm}
+{$else}
+  {$R *.dfm}
+{$endif}
 
 { TfmCadCli }
 

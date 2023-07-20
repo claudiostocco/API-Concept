@@ -1,6 +1,8 @@
 unit adapter.query.intf;
 
-{$mode Delphi}
+{$ifdef FPC}
+   {$mode Delphi}
+{$endif}
 
 interface
 
@@ -24,7 +26,8 @@ type
     function SetParamByName(Param: String; Value: Variant): IQuery;
     function SetFieldMask(Field: String; Mask: String; TypeMask: TTypeFieldMaskSet): IQuery;
     function Update(SQL: String): IQuery;
-    property RowsAffected: Integer;
+    function GetRowsAffected: Int64;
+    property RowsAffected: Int64 read GetRowsAffected;
   end;
 
 implementation

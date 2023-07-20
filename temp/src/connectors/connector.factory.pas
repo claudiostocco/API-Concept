@@ -1,6 +1,10 @@
 unit connector.factory;
 
-{$mode Delphi}
+{$I ../db/dbcomponent.inc}
+
+{$ifdef FPC}
+   {$mode Delphi}
+{$endif}
 
 interface
 
@@ -8,7 +12,14 @@ uses
     (* System Units *)
     Classes, SysUtils,
     (* Project units *)
-    adapter.query.intf, connector.zeos;
+    adapter.query.intf
+    {$ifdef USE_ZEOS}
+    , connector.zeos
+    {$endif}
+    {$ifdef USE_FIREDAC}
+    , connector.firedac
+    {$endif}
+    ;
 
 type
 
@@ -28,7 +39,6 @@ type
   { TQueryFactory }
   TQueryFactory = class
   private
-     class function New<T>(AOwner: TComponent): IQuery;
   public
      class function New(AOwner: TComponent; Connection: TComponent): IQuery; overload;
      class function New(AOwner: TComponent): IQuery; overload;
@@ -57,26 +67,29 @@ class function TConnectionFactory.New: TComponent;
 begin
    if not Assigned(FInstance) then
       raise ENoConstructException.Create('Not exists instance of the TConnectionFactory class!');
-   Result := TZeosConnection.NewConnection(FAOwner,FInstance.FConnection);
+   {$ifdef USE_ZEOS}
+      Result := TZeosConnection.NewConnection(FAOwner,FInstance.FConnection);
+   {$endif}
+   {$ifdef USE_FIREDAC}
+      Result := TFiredacConnection.NewConnection(FAOwner,FInstance.FConnection);
+   {$endif}
 end;
 
 { TQueryFactory }
-
-class function TQueryFactory.New<T>(AOwner: TComponent): IQuery;
-begin
-   Result := T.Create(AOwner);
-end;
-
 class function TQueryFactory.New(AOwner: TComponent; Connection: TComponent): IQuery;
 begin
-   Result := TQueryFactory.New<TZeosQuery>(AOwner);
+   {$ifdef USE_ZEOS}
+      Result := TZeosQuery.Create(AOwner);
+   {$endif}
+   {$ifdef USE_FIREDAC}
+      Result := TFiredacQuery.Create(AOwner);
+   {$endif}
    Result.SetConnection(Connection);
 end;
 
 class function TQueryFactory.New(AOwner: TComponent): IQuery;
 begin
-   Result := TQueryFactory.New<TZeosQuery>(AOwner);
-   Result.SetConnection(TConnectionFactory.Get);
+   Result := TQueryFactory.New(AOwner, TConnectionFactory.Get);
 end;
 
 end.
