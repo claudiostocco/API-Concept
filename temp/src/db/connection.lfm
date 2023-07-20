@@ -12,7 +12,6 @@ object dmConn: TdmConn
       'AutoEncodeStrings=ON'
       'controls_cp=CP_UTF8'
     )
-    Connected = True
     Port = 0
     Database = '127.0.0.1:cadcli'
     User = 'sysdba'
