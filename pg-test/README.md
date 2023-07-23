@@ -1,1 +1,1 @@
-# This folder containing PostgreSQL connection tests
+# This folder contains PostgreSQL connection tests.
