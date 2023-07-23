@@ -87,6 +87,10 @@
         <Filename Value="db\dbcomponent.inc"/>
         <IsPartOfProject Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="connectors\connector.sqldb.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

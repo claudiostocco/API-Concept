@@ -9,7 +9,7 @@ unit connection;
 interface
 
 uses
-  Classes, SysUtils, Dialogs, IniFiles, DB,
+  Classes, SysUtils, Dialogs, IniFiles, DB, IBConnection, PQConnection,
   {$ifdef USE_FIREDAC}
   FireDAC.UI.Intf, FireDAC.VCLUI.Wait, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.Phys.Intf,
   FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Comp.Client, FireDAC.Comp.UI,
@@ -25,6 +25,17 @@ type
   { TdmConn }
 
   TdmConn = class(TDataModule)
+    IBConnection: TIBConnection;
+    PQConnection: TPQConnection;
+    ZConnection: TZConnection;
+    ZQuery1: TZQuery;
+    ZQuery1CEP: TStringField;
+    ZQuery1ENDERECO: TStringField;
+    ZQuery1ID: TStringField;
+    ZQuery1IDMUNICIPIO: TLongintField;
+    ZQuery1NASCIMENTO: TDateField;
+    ZQuery1NOME: TStringField;
+    ZQuery1NUMERO: TLongintField;
   {$ifdef USE_FIREDAC}
     Cursor: TFDGUIxWaitCursor;
     FDConnection: TFDConnection;
@@ -73,22 +84,43 @@ begin
       try
          Ini := TIniFile.Create(sPath+'application.ini');
          {$ifdef USE_ZEOS}
-	           ZConnection.Protocol := Ini.ReadString('database','driver','');
-	           ZConnection.Database := Ini.ReadString('database','dbfile','');
-	           ZConnection.User := Ini.ReadString('database','user','');
-	           ZConnection.Password := Ini.ReadString('database','password','');
-	           ZConnection.LibraryLocation := Ini.ReadString('database','libraryClient','');
-	           ZConnection.Connected := True;
-	           dbConnection := ZConnection;
+	   ZConnection.Protocol := Ini.ReadString('database','driver','');
+	   ZConnection.Database := Ini.ReadString('database','dbfile','');
+	   ZConnection.User := Ini.ReadString('database','user','');
+	   ZConnection.Password := Ini.ReadString('database','password','');
+	   ZConnection.LibraryLocation := Ini.ReadString('database','libraryClient','');
+	   ZConnection.Connected := True;
+	   dbConnection := ZConnection;
+         {$endif}
+         {$ifdef USE_SQLDB}
+           if Ini.ReadString('database','driver','') = 'firebird' then
+           begin
+	     IBConnection.Protocol := Ini.ReadString('database','driver','');
+	     IBConnection.Database := Ini.ReadString('database','dbfile','');
+	     IBConnection.User := Ini.ReadString('database','user','');
+	     IBConnection.Password := Ini.ReadString('database','password','');
+	     IBConnection.LibraryLocation := Ini.ReadString('database','libraryClient','');
+	     IBConnection.Connected := True;
+	     dbConnection := ZConnection;
+           end else if Ini.ReadString('database','driver','') = 'postgres' then
+           begin
+	     PGConnection.Protocol := Ini.ReadString('database','driver','');
+	     PGConnection.Database := Ini.ReadString('database','dbfile','');
+	     PGConnection.User := Ini.ReadString('database','user','');
+	     PGConnection.Password := Ini.ReadString('database','password','');
+	     PGConnection.LibraryLocation := Ini.ReadString('database','libraryClient','');
+	     PGConnection.Connected := True;
+	     dbConnection := ZConnection;
+           end;
          {$endif}
          {$ifdef USE_FIREDAC}
-	           FDConnection.DriverName := Ini.ReadString('database','driver','');
-	           FDConnection.Params.Database := Ini.ReadString('database','dbfile','');
-	           FDConnection.Params.UserName := Ini.ReadString('database','user','');
-	           FDConnection.Params.Password := Ini.ReadString('database','password','');
-	           PgDriverLink.VendorLib := Ini.ReadString('database','libraryClient','');
-	           FDConnection.Connected := True;
-	           dbConnection := FDConnection;
+	   FDConnection.DriverName := Ini.ReadString('database','driver','');
+	   FDConnection.Params.Database := Ini.ReadString('database','dbfile','');
+	   FDConnection.Params.UserName := Ini.ReadString('database','user','');
+	   FDConnection.Params.Password := Ini.ReadString('database','password','');
+	   PgDriverLink.VendorLib := Ini.ReadString('database','libraryClient','');
+	   FDConnection.Connected := True;
+	   dbConnection := FDConnection;
          {$endif}
       finally
          FreeAndNil(Ini);

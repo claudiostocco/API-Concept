@@ -1,7 +1,7 @@
 object dmConn: TdmConn
   OnCreate = DataModuleCreate
   OldCreateOrder = False
-  Height = 241
+  Height = 262
   HorizontalOffset = 301
   VerticalOffset = 250
   Width = 271
@@ -27,8 +27,8 @@ object dmConn: TdmConn
       'SELECT ID, NOME, ENDERECO, NUMERO, CEP, IDMUNICIPIO, NASCIMENTO FROM CLIENTE'
     )
     Params = <>
-    Left = 128
-    Top = 132
+    Left = 136
+    Top = 24
     object ZQuery1ID: TStringField
       FieldKind = fkData
       FieldName = 'ID'
@@ -96,5 +96,27 @@ object dmConn: TdmConn
       ReadOnly = True
       Required = False
     end
+  end
+  object IBConnection: TIBConnection
+    Connected = False
+    LoginPrompt = False
+    DatabaseName = '127.0.0.1:cadcli'
+    KeepConnection = False
+    Password = 'pfglessa'
+    UserName = 'sysdba'
+    CheckTransactionParams = False
+    UseConnectionCharSetIfNone = False
+    Left = 56
+    Top = 104
+  end
+  object PQConnection: TPQConnection
+    Connected = False
+    LoginPrompt = False
+    DatabaseName = '127.0.0.1:5432/cadcli'
+    KeepConnection = False
+    Password = '123456'
+    UserName = 'postgres'
+    Left = 56
+    Top = 180
   end
 end
