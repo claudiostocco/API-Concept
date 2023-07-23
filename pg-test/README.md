@@ -1,0 +1,1 @@
+# This folder containing PostgreSQL connection tests
