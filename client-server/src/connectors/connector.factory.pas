@@ -16,6 +16,9 @@ uses
     {$ifdef USE_ZEOS}
     , connector.zeos
     {$endif}
+    {$ifdef USE_SQLDB}
+    , connector.sqldb
+    {$endif}
     {$ifdef USE_FIREDAC}
     , connector.firedac
     {$endif}
@@ -78,8 +81,11 @@ end;
 { TQueryFactory }
 class function TQueryFactory.New(AOwner: TComponent; Connection: TComponent): IQuery;
 begin
-   {$ifdef USE_ZEOS}
+   {$if defined(USE_ZEOS) and defined(DEFAULT_ZEOS)}
       Result := TZeosQuery.Create(AOwner);
+   {$endif}
+   {$if defined(USE_SQLDB) and defined(DEFAULT_SQLDB)}
+      Result := TSQLdbQuery.Create(AOwner);
    {$endif}
    {$ifdef USE_FIREDAC}
       Result := TFiredacQuery.Create(AOwner);

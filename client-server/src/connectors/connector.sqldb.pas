@@ -7,21 +7,21 @@ interface
 uses
    (* System Units *)
    Classes, SysUtils, DB,
-   (* Zeos Units *)
-   ZAbstractConnection, ZDataSet, zcomponent, ZConnection,
+   (* SQLdb Units *)
+   SQLDB,
    (* Project units *)
    adapter.query.intf, adapter.query.impl;
 
 type
 
-  { TZeosConnection }
+  { TSQLdbConnection }
 
-  TZeosConnection = class
+  TSQLdbConnection = class
     class function NewConnection(AOwner: TComponent; Connection: TComponent): TComponent;
   end;
 
-  { TZeosQuery }
-  TZeosQuery = class(TAbstractQuery)
+  { TSQLdbQuery }
+  TSQLdbQuery = class(TAbstractQuery)
   public
     constructor Create(AOwner: TComponent);
     function Exec: IQuery; overload; override;
@@ -33,57 +33,56 @@ type
 
 implementation
 
-{ TZeosConnection }
+{ TSQLdbConnection }
 
-class function TZeosConnection.NewConnection(AOwner: TComponent; Connection: TComponent): TComponent;
+class function TSQLdbConnection.NewConnection(AOwner: TComponent; Connection: TComponent): TComponent;
 begin
-   Result := TZConnection.Create(AOwner);
-   with (Result as TZConnection) do
-   begin
-      Protocol := (Connection as TZConnection).Protocol;
-      Database := (Connection as TZConnection).Database;
-      User := (Connection as TZConnection).User;
-      Password := (Connection as TZConnection).Password;
-      LibraryLocation := (Connection as TZConnection).LibraryLocation;
-      Connected := True;
-   end;
+   //Result := TZConnection.Create(AOwner);
+   //with (Result as TZConnection) do
+   //begin
+   //   Protocol := (Connection as TZConnection).Protocol;
+   //   Database := (Connection as TZConnection).Database;
+   //   User := (Connection as TZConnection).User;
+   //   Password := (Connection as TZConnection).Password;
+   //   LibraryLocation := (Connection as TZConnection).LibraryLocation;
+   //   Connected := True;
+   //end;
 end;
 
-constructor TZeosQuery.Create(AOwner: TComponent);
+constructor TSQLdbQuery.Create(AOwner: TComponent);
 begin
-   FInternalDataSet := TZQuery.Create(AOwner);
+   FInternalDataSet := TSQLQuery.Create(AOwner);
 end;
 
-function TZeosQuery.Exec: IQuery;
+function TSQLdbQuery.Exec: IQuery;
 begin
-   (FInternalDataSet as TZQuery).ExecSQL;
-   FRowsAffected := (FInternalDataSet as TZQuery).RowsAffected;
+   (FInternalDataSet as TSQLQuery).ExecSQL;
+   FRowsAffected := (FInternalDataSet as TSQLQuery).RowsAffected;
    Result := Self;
 end;
 
-function TZeosQuery.Exec(SQL: String): IQuery;
-var iRowsAffected: Integer;
+function TSQLdbQuery.Exec(SQL: String): IQuery;
 begin
-   (FInternalDataSet as TZQuery).Connection.ExecuteDirect(SQL,iRowsAffected);
-   FRowsAffected := iRowsAffected;
+   (FInternalDataSet as TSQLQuery).SQLConnection.ExecuteDirect(SQL);
+   FRowsAffected := 0;
    Result := Self;
 end;
 
-function TZeosQuery.Select(SQL: String): IQuery;
+function TSQLdbQuery.Select(SQL: String): IQuery;
 begin
-   (FInternalDataSet as TZQuery).SQL.Text := SQL;
-   (FInternalDataSet as TZQuery).Prepare;
+   (FInternalDataSet as TSQLQuery).SQL.Text := SQL;
+   (FInternalDataSet as TSQLQuery).Prepare;
    Result := Self;
 end;
 
-procedure TZeosQuery.SetConnection(Connection: TComponent);
+procedure TSQLdbQuery.SetConnection(Connection: TComponent);
 begin
-   (FInternalDataSet as TZQuery).Connection := (Connection as TZAbstractConnection);
+   (FInternalDataSet as TSQLQuery).SQLConnection := (Connection as TSQLConnection);
 end;
 
-function TZeosQuery.SetParamByName(Param: String; Value: Variant): IQuery;
+function TSQLdbQuery.SetParamByName(Param: String; Value: Variant): IQuery;
 begin
-   (FInternalDataSet as TZQuery).ParamByName(Param).Value := Value;
+   (FInternalDataSet as TSQLQuery).ParamByName(Param).Value := Value;
    Result := Self;
 end;
 

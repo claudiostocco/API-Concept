@@ -13,11 +13,10 @@ object dmConn: TdmConn
       'controls_cp=CP_UTF8'
     )
     Port = 0
-    Database = '127.0.0.1:cadcli'
-    User = 'sysdba'
-    Password = 'pfglessa'
-    Protocol = 'firebird'
-    LibraryLocation = '/lib64/libfbclient.so'
+    Database = 'postgres://postgres:123456@localhost/cadcli'
+    User = 'postgres'
+    Password = '123456'
+    Protocol = 'postgresql'
     Left = 56
     Top = 24
   end
@@ -118,5 +117,12 @@ object dmConn: TdmConn
     UserName = 'postgres'
     Left = 56
     Top = 180
+  end
+  object SQLQuery1: TSQLQuery
+    FieldDefs = <>
+    Params = <>
+    Macros = <>
+    Left = 210
+    Top = 143
   end
 end
