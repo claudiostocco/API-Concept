@@ -41,8 +41,8 @@ begin
           FQueryCad.AsDataSet.Fields[i].ReadOnly := False;
    {$endif}
 
-   FQueryCad.SetFieldMask('CEP','99999-999;_;0',[tmEditMask])
-            .SetFieldMask('NASCIMENTO','99/99/9999;_;0',[tmEditMask]);
+   FQueryCad.SetFieldMask('CEP','99999-999;0;_',[tmEditMask])
+            .SetFieldMask('NASCIMENTO','99/99/9999;1;_',[tmEditMask]);
 end;
 
 function TCadCliService.GetCadCliDataSet: TDataSet;
