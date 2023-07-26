@@ -15,6 +15,7 @@ type
 
   IQuery = Interface
     function AsDataSet: TDataSet;
+    procedure CommitOrApplyUpdates(Dataset: TDataSet = nil);
     function Exec: IQuery; overload;
     function Exec(SQL: String): IQuery; overload;
     //function GetField<T>(FieldName: String): T;

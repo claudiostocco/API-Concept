@@ -19,6 +19,7 @@ type
   TCadCliService = class
     private
       FQueryCad: IQuery;
+      procedure QueryCadAferPost(Dataset: TDataSet);
     public
       constructor Create(AOwner: TComponent);
       function GetCadCliDataSet: TDataSet;
@@ -27,6 +28,11 @@ type
 implementation
 
 { TCadCliService }
+
+procedure TCadCliService.QueryCadAferPost(Dataset: TDataSet);
+begin
+   FQueryCad.CommitOrApplyUpdates;
+end;
 
 constructor TCadCliService.Create(AOwner: TComponent);
 {$ifdef linux}
@@ -43,6 +49,7 @@ begin
 
    FQueryCad.SetFieldMask('CEP','99999-999;0;_',[tmEditMask])
             .SetFieldMask('NASCIMENTO','99/99/9999;1;_',[tmEditMask]);
+   FQueryCad.AsDataSet.AfterPost := QueryCadAferPost;
 end;
 
 function TCadCliService.GetCadCliDataSet: TDataSet;

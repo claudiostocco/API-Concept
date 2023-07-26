@@ -19,7 +19,7 @@ uses
   , IBConnection, PQConnection, SQLDB
   {$endif}
   {$ifdef USE_ZEOS}
-  , ZConnection, ZDataset
+  , ZConnection, ZDataset, ZSqlUpdate
   {$endif}
   ;
 
@@ -48,6 +48,7 @@ type
     ZQuery1NASCIMENTO: TDateField;
     ZQuery1NOME: TStringField;
     ZQuery1NUMERO: TLongintField;
+    ZUpdateSQL1: TZUpdateSQL;
   {$endif}
     procedure DataModuleCreate(Sender: TObject);
   private

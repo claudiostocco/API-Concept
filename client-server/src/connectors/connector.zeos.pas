@@ -8,7 +8,7 @@ uses
    (* System Units *)
    Classes, SysUtils, DB,
    (* Zeos Units *)
-   ZAbstractConnection, ZDataSet, zcomponent, ZConnection,
+   ZAbstractConnection, ZConnection, zcomponent, ZDataSet,
    (* Project units *)
    adapter.query.intf, adapter.query.impl;
 
@@ -24,6 +24,7 @@ type
   TZeosQuery = class(TAbstractQuery)
   public
     constructor Create(AOwner: TComponent);
+    procedure CommitOrApplyUpdates(Dataset: TDataSet = nil); override;
     function Exec: IQuery; overload; override;
     function Exec(SQL: String): IQuery; overload; override;
     function Select(SQL: String): IQuery; override;
@@ -52,6 +53,33 @@ end;
 constructor TZeosQuery.Create(AOwner: TComponent);
 begin
    FInternalDataSet := TZQuery.Create(AOwner);
+end;
+
+procedure TZeosQuery.CommitOrApplyUpdates(Dataset: TDataSet);
+begin
+   if Dataset <> nil then
+   begin
+     with (Dataset as TZQuery) do
+     begin
+       ApplyUpdates;
+       with (Connection as TZAbstractConnection) do
+       begin
+         if not AutoCommit then
+           Commit;
+       end;
+     end;
+   end else
+   begin
+     with (FInternalDataSet as TZQuery) do
+     begin
+       ApplyUpdates;
+       with (Connection as TZAbstractConnection) do
+       begin
+         if not AutoCommit then
+           Commit;
+       end;
+     end;
+   end;
 end;
 
 function TZeosQuery.Exec: IQuery;

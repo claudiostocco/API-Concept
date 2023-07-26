@@ -4,7 +4,7 @@ object dmConn: TdmConn
   Height = 262
   HorizontalOffset = 301
   VerticalOffset = 250
-  Width = 271
+  Width = 309
   object ZConnection: TZConnection
     ControlsCodePage = cCP_UTF8
     AutoEncodeStrings = True
@@ -124,5 +124,10 @@ object dmConn: TdmConn
     Macros = <>
     Left = 210
     Top = 143
+  end
+  object ZUpdateSQL1: TZUpdateSQL
+    UseSequenceFieldForRefreshSQL = False
+    Left = 216
+    Top = 24
   end
 end

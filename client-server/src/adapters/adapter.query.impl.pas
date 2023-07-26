@@ -23,6 +23,7 @@ type
     function GetRowsAffected: Int64;
   public
     function AsDataSet: TDataSet;
+    procedure CommitOrApplyUpdates(Dataset: TDataSet = nil); virtual; abstract;
     function Exec(SQL: String): IQuery; overload; virtual;
     function Exec: IQuery; overload; virtual; abstract;
     function Insert(SQL: String; UpSert: Boolean=False): IQuery;

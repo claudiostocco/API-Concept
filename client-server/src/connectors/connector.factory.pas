@@ -13,10 +13,10 @@ uses
     Classes, SysUtils,
     (* Project units *)
     adapter.query.intf
-    {$ifdef USE_ZEOS}
+    {$if defined(USE_ZEOS) and defined(DEFAULT_ZEOS)}
     , connector.zeos
     {$endif}
-    {$ifdef USE_SQLDB}
+    {$if defined(USE_SQLDB) and defined(DEFAULT_SQLDB)}
     , connector.sqldb
     {$endif}
     {$ifdef USE_FIREDAC}
