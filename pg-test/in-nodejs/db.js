@@ -34,7 +34,7 @@ async function selectCadCli(sql) {
 }
 
 async function insert(table, entitie){
-    // const client = await connect();
+    const client = await connect();
     // ${entitie.keys()}
 
     // let fields = '';
@@ -55,17 +55,18 @@ async function insert(table, entitie){
 
     const fields = [];
     const values = [];
-
     for (key in entitie) {
         values.push(entitie[key]);
         fields.push(key);
     }
-    const params = values.map<String>((v,i) => `$${i}`).toString();
+    const params = values.map((v,i) => `$${i+1}`);
     const sql = `INSERT INTO ${table} (${fields.toString()}) VALUES (${params})`;
     console.log(sql);
     // const sql = 'INSERT INTO clientes(nome,idade,uf) VALUES ($1,$2,$3);';
     // const values = [customer.nome, customer.idade, customer.uf];
-    // return await client.query(sql, values);
+    const res = await client.query(sql, values);
+    client.release();
+    return res;
 }
 
 module.exports = { selectNow, selectCadCli, insert };

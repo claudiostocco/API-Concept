@@ -13,14 +13,19 @@ async function start() {
 
 }
 
-db.insert('CADCLI', {
-        id: '30341446874',
-        nome: 'CLAUDIO MARCIO STOCCO',
-        endereco: 'CAIXA POSTAL',
-        numero: 72,
-        cep: '18769899',
-        idmunicipio: 35,
-        nascimento: "1982-04-23T03:00:00.000Z"
-    }
-)
-// start();
+async function startInsert() {
+    const res = await db.insert('CLIENTE', {
+            id: '00000000191',
+            nome: 'NOVO CLIENTE',
+            endereco: 'CAIXA POSTAL',
+            numero: 70,
+            cep: '18769899',
+            idmunicipio: 35,
+            nascimento: "1980-01-13T00:00:00.000Z"
+        }
+    )
+    console.log(res);
+}
+
+// startInsert();
+start();
