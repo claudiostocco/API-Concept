@@ -16,7 +16,6 @@ begin
   Json := TJson.Create;
 
   try
-
     Json.Put('null-field', null);
     Json.Put('boolean-field-true', True);
 

@@ -49,7 +49,7 @@ type
   private
     FOwner : TJsonBase;
     function  GetOwner: TJsonBase;
-    procedure InternalStringify(Stream:TStringStream;AName:string;AValue:TJsonValue);
+    procedure InternalStringify(Stream: TStringStream; AName: String; AValue: TJsonBase);
   protected
     function GetOwnerName: String;
     procedure RaiseError(const Msg: String);
@@ -454,7 +454,7 @@ begin
   end;
 end;
 
-procedure TJsonBase.InternalStringify(Stream:TStringStream;AName:string;AValue:TJsonValue);
+procedure TJsonBase.InternalStringify(Stream: TStringStream; AName: String; AValue: TJsonBase);
 const
   StrBoolean : array[Boolean] of string = ('false', 'true');
 procedure ObjectStringify(JsonObject:Jsons.TJsonObject);
@@ -487,15 +487,20 @@ begin
 end;
 begin
   if AName<>'' then Stream.WriteString('"'+AValue.Encode(AName)+'":');
-  case AValue.ValueType of
-    jvNone    ,
-    jvNull    : Stream.WriteString('null');
-    jvString  : Stream.WriteString('"'+AValue.Encode(AValue.AsString)+'"');
-    jvNumber  : Stream.WriteString(FixedFloatToStr(AValue.AsNumber));
-    jvBoolean : Stream.WriteString(StrBoolean[AValue.AsBoolean]);
-    jvObject  : ObjectStringify(AValue.AsObject);
-    jvArray   : ArrayStringify(AValue.AsArray);
-  end;
+  if AValue is TJsonObject then
+     ObjectStringify(AValue as TJsonObject)
+  else if AValue is TJsonArray then
+     ArrayStringify(AValue as TJsonArray)
+  else
+     case (AValue as TJsonValue).ValueType of
+       jvNone    ,
+       jvNull    : Stream.WriteString('null');
+       jvString  : Stream.WriteString('"'+AValue.Encode((AValue as TJsonValue).AsString)+'"');
+       jvNumber  : Stream.WriteString(FixedFloatToStr((AValue as TJsonValue).AsNumber));
+       jvBoolean : Stream.WriteString(StrBoolean[(AValue as TJsonValue).AsBoolean]);
+       jvObject  : ObjectStringify((AValue as TJsonValue).AsObject);
+       jvArray   : ArrayStringify((AValue as TJsonValue).AsArray);
+     end;
 end;
 
 function TJsonBase.Stringify:string;
@@ -503,7 +508,7 @@ var
   Stream : TStringStream;
 begin
   Stream := TStringStream.Create;
-  InternalStringify(Stream,'',TJsonValue(Self));
+  InternalStringify(Stream,'',Self);
   Result := Stream.DataString;
   Stream.Free;
 end;
