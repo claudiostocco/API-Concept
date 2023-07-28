@@ -67,7 +67,7 @@ Android/
 *.stat
 
 # libs
-.modules/
+# .modules/
 
 # Lazarus
 backup/
@@ -77,3 +77,7 @@ lib/
 
 # Build directory
 build/
+temp/
+
+# Database directory
+data/
