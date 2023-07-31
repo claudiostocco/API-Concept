@@ -12,15 +12,14 @@ uses
   {$else}
   System.Classes, System.SysUtils
   {$endif}
-  , Horse;
+  , entrypoints.entry;
 
   type
 
-				{ TControllerRoutes }
+    { TControllerRoutes }
 
     TControllerRoutes = class
     private
-      class procedure rootRoute;
     public
       class procedure registerRoutes;
     end;
@@ -29,26 +28,10 @@ implementation
 
 { TControllerRoutes }
 
-procedure onGet(req: THorseRequest; res: THorseResponse);
-begin
-  res.ContentType('text/html').Status(THTTPStatus.OK).Send(Format(
-           '<html>'+
-           '  <head><title>API Server home page</title></head>'+
-           '  <body>'+
-           '    <h1>API Server home page - Server is running on port %d - Horse version %s</h1>'+
-           '  </body>'+
-           '</html>',
-           [THorse.Port,THorse.Version]));
-end;
-
-class procedure TControllerRoutes.rootRoute;
-begin
-   THorse.Get('/',onGet);
-end;
-
 class procedure TControllerRoutes.registerRoutes;
 begin
-  rootRoute;
+  TEntrypoint.rootRoute;
+  TEntrypoint.versionRoute;
 end;
 
 end.
