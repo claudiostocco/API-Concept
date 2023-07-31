@@ -20,6 +20,9 @@ uses
 				{ TServerMain }
 
     TServerMain = class
+    private
+      class var FInstance: TServerMain;
+      class function GetInstance: TServerMain;
     public
       class function CreateServer: TServerMain;
       procedure Start;
@@ -29,6 +32,13 @@ implementation
 
 { TServerMain }
 
+class function TServerMain.GetInstance: TServerMain;
+begin
+  if FInstance = nil then
+    FInstance := TServerMain.Create;
+  Result := FInstance;
+end;
+
 class function TServerMain.CreateServer: TServerMain;
 begin
   THorse.Use(HandleException);
@@ -37,6 +47,8 @@ begin
   THorse.Port := 5000;
 
   TControllerRoutes.registerRoutes;
+
+  Result := GetInstance;
 end;
 
 procedure onListen;
