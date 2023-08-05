@@ -42,7 +42,7 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="entrypoints\entrypoints.horseentry.pas"/>
+        <Filename Value="entrypoints\horse\entrypoints.horseentry.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="entrypoints.horseEntry"/>
       </Unit>
