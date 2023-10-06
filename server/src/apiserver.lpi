@@ -50,6 +50,11 @@
         <Filename Value="constants\constants.common.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="entrypoints\entrypoints.customerentry.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="entrypoints.customerEntry"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
