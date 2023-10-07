@@ -83,6 +83,7 @@ begin
          Ini := TIniFile.Create(sPath+'application.ini');
          {$if defined(USE_ZEOS) and defined(DEFAULT_ZEOS)}
 	   ZConnection.Protocol := Ini.ReadString('database','driver','');
+           ZConnection.Catalog := Ini.ReadString('database','catalog','');
 	   ZConnection.Database := Ini.ReadString('database','dbfile','');
 	   ZConnection.User := Ini.ReadString('database','user','');
 	   ZConnection.Password := Ini.ReadString('database','password','');

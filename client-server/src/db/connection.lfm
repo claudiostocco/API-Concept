@@ -8,12 +8,15 @@ object dmConn: TdmConn
   object ZConnection: TZConnection
     ControlsCodePage = cCP_UTF8
     AutoEncodeStrings = True
+    Catalog = 'cadcli'
     Properties.Strings = (
       'AutoEncodeStrings=ON'
       'controls_cp=CP_UTF8'
     )
+    Connected = True
+    HostName = 'localhost'
     Port = 0
-    Database = 'postgres://postgres:123456@localhost/cadcli'
+    Database = 'cadcli'
     User = 'postgres'
     Password = '123456'
     Protocol = 'postgresql'
@@ -23,7 +26,7 @@ object dmConn: TdmConn
   object ZQuery1: TZQuery
     Connection = ZConnection
     SQL.Strings = (
-      'SELECT ID, NOME, ENDERECO, NUMERO, CEP, IDMUNICIPIO, NASCIMENTO FROM CLIENTE'
+      'SELECT ID, NOME, ENDERECO, NUMERO, CEP, IDMUNICIPIO, NASCIMENTO FROM PUBLIC.CLIENTE'
     )
     Params = <>
     Left = 136
