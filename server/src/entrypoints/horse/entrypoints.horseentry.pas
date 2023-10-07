@@ -29,6 +29,8 @@ uses
 
 implementation
 
+uses entrypoints.customerEntry;
+
 { THorseEntrypoint }
 
 procedure onGet(req: THorseRequest; res: THorseResponse);
@@ -62,7 +64,7 @@ end;
 
 class procedure THorseEntrypoint.customerRoute;
 begin
-
+  TCustomerEntry.registerRoutes;
 end;
 
 end.
