@@ -5,7 +5,6 @@ object fmMain: TfmMain
   Width = 879
   Caption = 'Menu'
   Menu = MainMenu1
-  LCLVersion = '2.2.6.0'
   object MainMenu1: TMainMenu
     Left = 172
     Top = 66
