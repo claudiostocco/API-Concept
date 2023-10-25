@@ -50,6 +50,11 @@
         <Filename Value="constants\constants.common.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="entrypoints\horse\entrypoints.customerentry.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="entrypoints.customerEntry"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -60,7 +65,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value=".modules\horse\src;.modules\horse-cors\src;.modules\handle-exception\src;.modules\horse-logger-provider-logfile\src;.modules\horse-logger\src;.modules\horse-jwt\src;.modules\HashLib\src\Base;.modules\HashLib\src\Checksum;.modules\HashLib\src\Crypto;.modules\HashLib\src\Hash128;.modules\HashLib\src\Hash32;.modules\HashLib\src\Hash64;.modules\HashLib\src\Include;.modules\HashLib\src\Interfaces;.modules\HashLib\src\KDF;.modules\HashLib\src\NullDigest;.modules\HashLib\src\Nullable;.modules\HashLib\src\Packages;.modules\HashLib\src\Utils;controllers;entrypoints;constants"/>
+      <OtherUnitFiles Value=".modules\horse\src;.modules\horse-cors\src;.modules\handle-exception\src;.modules\horse-logger-provider-logfile\src;.modules\horse-logger\src;.modules\horse-jwt\src;.modules\HashLib\src\Base;.modules\HashLib\src\Checksum;.modules\HashLib\src\Crypto;.modules\HashLib\src\Hash128;.modules\HashLib\src\Hash32;.modules\HashLib\src\Hash64;.modules\HashLib\src\Include;.modules\HashLib\src\Interfaces;.modules\HashLib\src\KDF;.modules\HashLib\src\NullDigest;.modules\HashLib\src\Nullable;.modules\HashLib\src\Packages;.modules\HashLib\src\Utils;controllers;entrypoints;entrypoints\horse;constants"/>
       <UnitOutputDirectory Value="..\lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

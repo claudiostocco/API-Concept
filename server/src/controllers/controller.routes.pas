@@ -32,6 +32,7 @@ class procedure TControllerRoutes.registerRoutes;
 begin
   TEntrypoint.rootRoute;
   TEntrypoint.versionRoute;
+  TEntrypoint.customerRoute;
 end;
 
 end.
